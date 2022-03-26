@@ -27,4 +27,12 @@ internal class IntroductionTest {
             foos
         )
     }
+
+    @Test
+    fun tripleQuotedStrings() {
+        val result: String = introduction.doTripleQuotedString()
+        val expectedResult = "question = \"life, the universe, and everything\"\nanswer = 42"
+
+        assertEquals(expectedResult, result)
+    }
 }

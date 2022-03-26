@@ -8,7 +8,7 @@ class Introduction {
         return options.joinToString(", ", prefix, postfix)
     }
 
-    // Default Arguments
+    // Default Arguments:
     fun foo(
         name: String,
         number: Int = 42,
@@ -22,4 +22,15 @@ class Introduction {
         foo(bar, toUpperCase = true),
         foo(name = bar, number = 2, toUpperCase = true)
     )
+
+    // Triple quoted Strings:
+    fun doTripleQuotedString(): String {
+        val question = "life, the universe, and everything"
+        val answer = 42
+        val tripleQuotedString = """ #question = "$question"
+            #answer = $answer""".trimMargin("#")
+
+        println(tripleQuotedString)
+        return tripleQuotedString;
+    }
 }
