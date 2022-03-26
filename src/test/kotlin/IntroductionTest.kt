@@ -14,12 +14,17 @@ internal class IntroductionTest {
         // Then:
         val expectedVal = "[a, b, c]";
 
-        assertEquals(expectedVal, joined);
+        assertEquals(expectedVal, joined)
     }
 
     @Test
     fun testDefaultArguments() {
         // Should compile when you call "useFoo"
-        introduction.useFoo()
+        val foos: List<String> = introduction.useFoo("bar")
+
+        assertEquals(
+            listOf("bar42", "bar1", "BAR42", "BAR2"),
+            foos
+        )
     }
 }
