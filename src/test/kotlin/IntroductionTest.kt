@@ -16,4 +16,10 @@ internal class IntroductionTest {
 
         assertEquals(expectedVal, joined);
     }
+
+    @Test
+    fun testDefaultArguments() {
+        // Should compile when you call "useFoo"
+        introduction.useFoo()
+    }
 }
