@@ -33,4 +33,13 @@ class Introduction {
         println(tripleQuotedString)
         return tripleQuotedString;
     }
+
+    // String templates:
+    fun doStringTemplates(date: String): Boolean {
+        val month = "(JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)"
+
+        fun getPattern() = """\d{2}\.\d{2}\.\d{4}"""
+
+        return true;
+    }
 }

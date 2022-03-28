@@ -31,8 +31,21 @@ internal class IntroductionTest {
     @Test
     fun tripleQuotedStrings() {
         val result: String = introduction.doTripleQuotedString()
-        val expectedResult = "question = \"life, the universe, and everything\"\nanswer = 42"
+        val expectedResult = """question = "life, the universe, and everything"
+answer = 42""".trimMargin()
 
         assertEquals(expectedResult, result)
+    }
+
+    @Test
+    fun stringTemplatesTest() {
+        val date: String = "12 JUN 1991"
+        val dateTwo: String = "June 12, 1991"
+
+        val resultOne: Boolean = introduction.doStringTemplates(date);
+        val expectedFalse: Boolean = introduction.doStringTemplates(dateTwo);
+
+        assertEquals(true, resultOne);
+        assertEquals(false, expectedFalse);
     }
 }
