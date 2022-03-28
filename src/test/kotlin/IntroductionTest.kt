@@ -41,11 +41,14 @@ answer = 42""".trimMargin()
     fun stringTemplatesTest() {
         val date: String = "12 JUN 1991"
         val dateTwo: String = "June 12, 1991"
+        val dateThree: String = "( 12, 1991"
 
-        val resultOne: Boolean = introduction.doStringTemplates(date);
+        val expectedTrue: Boolean = introduction.doStringTemplates(date);
         val expectedFalse: Boolean = introduction.doStringTemplates(dateTwo);
+        val expectedFalseTwo: Boolean = introduction.doStringTemplates(dateThree);
 
-        assertEquals(true, resultOne);
+        assertEquals(true, expectedTrue);
         assertEquals(false, expectedFalse);
+        assertEquals(false, expectedFalseTwo);
     }
 }
