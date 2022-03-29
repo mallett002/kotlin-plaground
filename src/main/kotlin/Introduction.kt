@@ -43,9 +43,7 @@ class Introduction {
     }
 
     // Nullable types:
-    fun sendMessageToClient(
-        client: Client?, message: String?, mailer: Mailer
-    ) {
+    fun sendMessageToClient(client: Client?, message: String?, mailer: Mailer) {
         val email = client?.personalInfo?.email;
 
         if (email != null && message != null) {
@@ -54,8 +52,16 @@ class Introduction {
     }
 
     class Client(val personalInfo: PersonalInfo?)
+
     class PersonalInfo(val email: String?)
+
     interface Mailer {
         fun sendMessage(email: String, message: String)
+    }
+
+    class MyMailer : Mailer {
+        override fun sendMessage(email: String, message: String) {
+            println("Sending email $email with message $message")
+        }
     }
 }

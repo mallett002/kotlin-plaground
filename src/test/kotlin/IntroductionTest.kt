@@ -1,3 +1,4 @@
+import Introduction.Mailer
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -50,5 +51,24 @@ answer = 42""".trimMargin()
         assertEquals(true, expectedTrue);
         assertEquals(false, expectedFalse);
         assertEquals(false, expectedFalseTwo);
+    }
+
+    @Test
+    fun testNullableTypes() {
+        val personalInfo: Introduction.PersonalInfo = Introduction.PersonalInfo("Cool email!")
+        val client: Introduction.Client = Introduction.Client(personalInfo)
+        val myMailer: Mailer = Introduction.MyMailer();
+
+        // Should not throw errors if no client nor message:
+        introduction.sendMessageToClient(null, null, myMailer);
+
+        // Should not throw errors if no client:
+        introduction.sendMessageToClient(null, "Dude look like a lady!", myMailer);
+
+        // Should not throw errors if no message:
+        introduction.sendMessageToClient(client, null, myMailer);
+
+        // Should not throw errors if all things exist:
+        introduction.sendMessageToClient(client, "Howdy doodie!", myMailer);
     }
 }
