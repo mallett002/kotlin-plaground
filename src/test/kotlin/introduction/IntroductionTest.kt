@@ -1,4 +1,7 @@
-import Introduction.Mailer
+package introduction
+
+import introduction.Introduction.Mailer
+import java.lang.IllegalArgumentException
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -70,5 +73,41 @@ answer = 42""".trimMargin()
 
         // Should not throw errors if all things exist:
         introduction.sendMessageToClient(client, "Howdy doodie!", myMailer);
+    }
+
+    @Test
+    fun testNothingTypeNull() {
+        // Should throw error if age is null
+        try {
+            introduction.checkAge(null);
+            assertEquals(true, false);
+        } catch (error: IllegalArgumentException) {
+            val isRightError: Boolean = error is IllegalArgumentException;
+
+            assertEquals(isRightError, true);
+        }
+    }
+
+    @Test
+    fun testNothingTypeLarge() {
+        // Should throw error if age is not between 0 & 150, inclusive
+        try {
+            introduction.checkAge(151);
+            assertEquals(true, false);
+        } catch (error: IllegalArgumentException) {
+            val isRightError: Boolean = error is IllegalArgumentException;
+
+            assertEquals(isRightError, true);
+        }
+    }
+
+    @Test
+    fun testNothingTypeCorrectAge() {
+        // Should not throw error if age is between 0 & 150, inclusive
+        try {
+            introduction.checkAge(150);
+        } catch (error: IllegalArgumentException) {
+            assertEquals(true, false)
+        }
     }
 }

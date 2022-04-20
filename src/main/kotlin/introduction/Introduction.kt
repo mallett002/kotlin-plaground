@@ -1,3 +1,7 @@
+package introduction
+
+import java.lang.IllegalArgumentException
+
 class Introduction {
     // Named Arguments:
     fun joinOptions(
@@ -63,5 +67,22 @@ class Introduction {
         override fun sendMessage(email: String, message: String) {
             println("Sending email $email with message $message")
         }
+    }
+
+    // Nothing type
+    // Return type for functions that always throws an exception
+    private fun failWithWrongAge(age: Int?): Nothing {
+        throw IllegalArgumentException("Wrong age: $age");
+    }
+
+    fun checkAge(age: Int?) {
+        if (age == null || age !in 0..150) { // between 0 - 150 (including 0 & 150)
+
+            failWithWrongAge(age);
+        }
+
+        if (age != null) {
+            println("Congrats! Next year you'll be ${age + 1}")
+        };
     }
 }
