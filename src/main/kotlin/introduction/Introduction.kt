@@ -86,5 +86,6 @@ class Introduction {
         };
     }
 
+    // Lambdas
     fun containsEven(nums: Collection<Int>): Boolean = nums.any { num -> num % 2 == 0 }
 }
