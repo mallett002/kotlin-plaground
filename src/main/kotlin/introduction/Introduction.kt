@@ -85,4 +85,6 @@ class Introduction {
             println("Congrats! Next year you'll be ${age + 1}")
         };
     }
+
+    fun containsEven(nums: Collection<Int>): Boolean = nums.any { num -> num % 2 == 0 }
 }

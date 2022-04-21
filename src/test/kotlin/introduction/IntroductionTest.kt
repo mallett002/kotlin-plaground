@@ -110,4 +110,16 @@ answer = 42""".trimMargin()
             assertEquals(true, false)
         }
     }
+
+    @Test
+    fun testContainsEven() {
+        val oneEven: Collection<Int> = listOf(2, 3, 5, 5, 9);
+        val noEvens: Collection<Int> = listOf(3, 5, 9, 7);
+
+        val actualOne: Boolean = introduction.containsEven(oneEven);
+        val actualTwo: Boolean = introduction.containsEven(noEvens);
+
+        assertEquals(true, actualOne);
+        assertEquals(false, actualTwo);
+    }
 }
