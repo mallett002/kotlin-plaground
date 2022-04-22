@@ -1,0 +1,47 @@
+package classes
+
+class Someone(val firstName: String, val lastName: String, val age: Int = 5) {
+    var otherName: String = "$lastName, $firstName"; 
+}
+
+class LearningClasses(val name: String) {
+    val children: MutableList<LearningClasses> = mutableListOf();
+
+    // secondary constructor
+    constructor(name: String, parent: LearningClasses) : this(name) {
+        parent.children.add(this);
+    }
+}
+
+class Thing {
+    init {
+        println("this comes first.");
+    }
+
+    constructor() {
+        println("this comes second.");
+    }
+}
+
+// Classes final by default.
+// need to use open if want to inherit from
+open class Shape {
+    open fun draw() {}
+}
+
+// Can override a non-abstract member with abstract one
+abstract class Square : Shape() {
+    abstract override fun draw()
+}
+
+class CoolSquare : Square() {
+    override fun draw() {
+        println("do it.");
+    }
+}
+
+/*
+    - Classes are final in kotlin by default. (Can't inherit from them)
+    - Specify "open" or "abstract" if you want to inherit from them
+    - You can override a non-abstract open member with an abstract one.
+*/
