@@ -77,7 +77,6 @@ class Introduction {
 
     fun checkAge(age: Int?) {
         if (age == null || age !in 0..150) { // between 0 - 150 (including 0 & 150)
-
             failWithWrongAge(age);
         }
 
