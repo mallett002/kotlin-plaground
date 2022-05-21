@@ -1,4 +1,4 @@
-fun main(args: Array<String>) {
+class Algorithms {
     fun canConstruct(target: String, wordBank: List<String>): Boolean {
         if (target.isEmpty()) {
             return true
@@ -11,7 +11,7 @@ fun main(args: Array<String>) {
                 val suffix = target.substring(word.length)
 
                 if (canConstruct(suffix, wordBank)) {
-                  return true
+                    return true
                 }
             }
 
@@ -20,9 +20,4 @@ fun main(args: Array<String>) {
         return false
     }
 
-    println(canConstruct("hello", listOf("hi", "hel", "ll", "lo"))) // true
-    println(canConstruct("", listOf("", "hel", "ll", "lo"))) // true
-    println(canConstruct("blah", listOf("bla", "hel", "ll", "lah"))) // false
 }
-
-
