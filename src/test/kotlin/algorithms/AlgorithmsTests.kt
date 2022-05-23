@@ -16,6 +16,9 @@ internal class AlgorithmsTests {
         val expectedFalseTwo = algorithms.canConstruct(
             "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef",
             listOf(
+                "e",
+                "eee",
+                "eeee",
                 "eeeeeeee",
                 "eeeeeeeee",
                 "eeeeeeeeee",
