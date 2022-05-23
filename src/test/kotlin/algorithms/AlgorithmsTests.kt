@@ -4,6 +4,7 @@ import Algorithms
 import org.junit.jupiter.api.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
+import kotlin.test.assertEquals
 
 internal class AlgorithmsTests {
     private val algorithms: Algorithms = Algorithms()
@@ -29,6 +30,29 @@ internal class AlgorithmsTests {
         assertTrue { expectedTrueTwo }
         assertFalse { expectedFalse }
         assertFalse { expectedFalseTwo }
+    }
+
+    @Test
+    fun testCountConstruct() {
+        val actualOne = algorithms.countConstruct("abcdef", listOf("ab", "abc", "cd", "def", "abcd"))
+        val actualTwo = algorithms.countConstruct("purple", listOf("purp", "p", "ur", "le", "purpl"))
+        val actualThree = algorithms.countConstruct("skateboard", listOf("bo", "rd", "ate", "ska", "stk", "boar"))
+        val expectedFour = algorithms.countConstruct(
+            "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef",
+            listOf(
+                "e",
+                "eee",
+                "eeee",
+                "eeeeeeee",
+                "eeeeeeeee",
+                "eeeeeeeeee",
+                "eeeeeeeeeeeeeeeeeeeee",
+            ))
+
+        assertEquals(1, actualOne)
+        assertEquals(2, actualTwo)
+        assertEquals(0, actualThree)
+        assertEquals(0, expectedFour)
     }
 }
 

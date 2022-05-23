@@ -27,4 +27,24 @@ class Algorithms {
         return false
     }
 
+
+    // Todo: make it fast!
+    fun countConstruct(target: String, wordBank: List<String>): Int {
+        if (target.isEmpty()) return 1;
+
+        var totalWays = 0;
+
+        for (word in wordBank) {
+            // make sure the word is a prefix for the target
+            if (target.indexOf(word) == 0) {
+                // get the suffix out from the target,
+                val suffix = target.substring(word.length)
+                val numWaysForSuffix = countConstruct(suffix, wordBank)
+
+                totalWays += numWaysForSuffix
+            }
+        }
+
+        return totalWays;
+    }
 }
