@@ -56,3 +56,23 @@ fun eval(expr: Expr): Int = when (expr) {
 interface Expr
 class Num(val value: Int) : Expr
 class Sum(val left: Expr, val right: Expr) : Expr
+
+
+/*
+* Sealed Classes
+* Has to be one of the Implemented interfaces, or extended classes
+* */
+fun evalSealed(expr: ExprSealed): Int = when (expr) {
+    is NumSealed -> expr.value
+    is SumSealed -> evalSealed(expr.left) + evalSealed(expr.right)
+    is OtherOne -> expr.next
+}
+
+// Make the sealed interface:
+sealed interface ExprSealed
+
+// Implement the interface with some classes:
+class NumSealed(val value: Int) : ExprSealed
+class SumSealed(val left: ExprSealed, val right: ExprSealed) : ExprSealed
+class OtherOne(val next: Int): ExprSealed
+// in "evalSealed", we don't need the "else" case, "expr" can only be one of the implemented interfaces from the sealed interface.
