@@ -82,6 +82,14 @@ class Algorithms {
             return "${builder}${createRomans(newNum, newRoman)}"
         }
 
+        // Fix this
+        if (num - 4 > 0) {
+            val newNum = num - 4
+            val newRoman: String = getRomanNumeral(4)
+
+            return "${builder}${createRomans(newNum, newRoman)}"
+        }
+
         return builder;
     }
 }
