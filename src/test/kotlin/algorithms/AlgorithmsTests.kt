@@ -54,6 +54,19 @@ internal class AlgorithmsTests {
         assertEquals(0, actualThree)
         assertEquals(0, expectedFour)
     }
+
+    @Test
+    fun testRomanNumerals() {
+//        val resultOne: String = algorithms.createRomans(0);
+//        val resultTwo: String = algorithms.createRomans(3);
+//        val resultThree: String = algorithms.createRomans(4);
+        val resultFour: String = algorithms.createRomans(6);
+
+//        assertEquals("", resultOne);
+//        assertEquals("III", resultTwo);
+//        assertEquals("IV", resultThree);
+        assertEquals("VI", resultFour);
+    }
 }
 
 
