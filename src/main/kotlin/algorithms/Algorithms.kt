@@ -32,9 +32,14 @@ class Algorithms {
     }
 
 
-    // Todo: make it fast!
-    fun countConstruct(target: String, wordBank: List<String>): Int {
-        if (target.isEmpty()) return 1;
+    // Runtime without memoization: 1061ms
+    // Runtime with memoization: 11ms
+    fun countConstruct(target: String, wordBank: List<String>, memo: MutableMap<String, Int> = mutableMapOf()): Int {
+        if (memo.containsKey(target)) return memo.get(target)!!
+        if (target.isEmpty()) {
+            memo[target] = 1;
+            return 1;
+        }
 
         var totalWays = 0;
 
@@ -43,12 +48,13 @@ class Algorithms {
             if (target.indexOf(word) == 0) {
                 // get the suffix out from the target,
                 val suffix = target.substring(word.length)
-                val numWaysForSuffix = countConstruct(suffix, wordBank)
+                val numWaysForSuffix = countConstruct(suffix, wordBank, memo)
 
                 totalWays += numWaysForSuffix
             }
         }
 
+        memo[target] = totalWays;
         return totalWays;
     }
 
@@ -87,16 +93,18 @@ class Algorithms {
         return 0
     }
 
-    private fun buildRomanString(num: Int, checker: Int, builder: String): String {
+    private fun buildRomanString(num: Int, checker: Int, builder: String, cache: MutableMap<Int, String>): String {
         val newNum = num - checker
         val newRoman: String = getRomanNumeral(checker)
 
-        return "${builder}${createRomans(newNum, newRoman)}"
+        return "${builder}${createRomans(newNum, newRoman, cache)}"
     }
 
     fun createRomans(num: Int, builder: String = "", cache: MutableMap<Int, String> = mutableMapOf()): String {
         // Base case: if we already did this operation, return the cached result
-        if (cache.containsKey(num)) return cache[num]!!
+        if (cache.containsKey(num)) {
+            return cache[num]!!
+        }
 
         // Base case: Tries to find a romanNumeral, returns it if it finds it
         val roman = getRomanNumeral(num)
@@ -111,7 +119,7 @@ class Algorithms {
         // if it finds one that isn't zero, returns the roman string from it
         val largest: Int = findLargestRoman(num)
         if (largest != 0) {
-            val updatedRoman = buildRomanString(num, largest, builder)
+            val updatedRoman = buildRomanString(num, largest, builder, cache)
             cache[num] = updatedRoman
             return updatedRoman
         }
