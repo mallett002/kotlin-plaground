@@ -58,14 +58,18 @@ internal class AlgorithmsTests {
     @Test
     fun testRomanNumerals() {
         val resultOne: String = algorithms.createRomans(0);
-        val resultTwo: String = algorithms.createRomans(3);
-        val resultThree: String = algorithms.createRomans(4);
-        val resultFour: String = algorithms.createRomans(6);
+        val resultTwo: String = algorithms.createRomans(1);
+        val resultThree: String = algorithms.createRomans(3);
+        val resultFour: String = algorithms.createRomans(4);
+        val resultFive: String = algorithms.createRomans(6);
+        val resultSix: String = algorithms.createRomans(49);
 
         assertEquals("", resultOne);
-        assertEquals("III", resultTwo);
-        assertEquals("IV", resultThree);
-        assertEquals("VI", resultFour);
+        assertEquals("I", resultTwo);
+        assertEquals("III", resultThree);
+        assertEquals("IV", resultFour);
+        assertEquals("VI", resultFive);
+        assertEquals("XLIX", resultSix);
     }
 }
 

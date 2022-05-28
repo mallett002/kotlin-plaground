@@ -52,6 +52,7 @@ class Algorithms {
         return totalWays;
     }
 
+    // Roman numerals algorithm:
     private fun getRomanNumeral(num: Int): String = when (num) {
         1 -> "I"
         4 -> "IV"
@@ -69,27 +70,42 @@ class Algorithms {
         else -> ""
     }
 
+    private fun findLargestRoman(num: Int): Int {
+        if (num - 1000 > 0 ) return 1000
+        if (num - 900 > 0 ) return 900
+        if (num - 500 > 0 ) return 500
+        if (num - 400 > 0 ) return 400
+        if (num - 100 > 0 ) return 100
+        if (num - 90 > 0 ) return 90
+        if (num - 50 > 0 ) return 50
+        if (num - 40 > 0 ) return 40
+        if (num - 10 > 0 ) return 10
+        if (num - 9 > 0 ) return 9
+        if (num - 5 > 0 ) return 5
+        if (num - 4 > 0 ) return 4
+        if (num - 1 > 0 ) return 1
+        return 0
+    }
+
+    private fun buildRomanString(num: Int, checker: Int, builder: String): String {
+        val newNum = num - checker
+        val newRoman: String = getRomanNumeral(checker)
+
+        return "${builder}${createRomans(newNum, newRoman)}"
+    }
+
     fun createRomans(num: Int, builder: String = ""): String {
         val roman = getRomanNumeral(num)
         if (roman.isNotEmpty()) {
             return "$builder${roman}"
         }
 
-        if (num - 5 > 0) {
-            val newNum = num - 5
-            val newRoman: String = getRomanNumeral(5)
-
-            return "${builder}${createRomans(newNum, newRoman)}"
-        }
-
-        // Fix this
-        if (num - 4 > 0) {
-            val newNum = num - 4
-            val newRoman: String = getRomanNumeral(4)
-
-            return "${builder}${createRomans(newNum, newRoman)}"
+        val largest: Int = findLargestRoman(num)
+        if (largest != 0) {
+            return buildRomanString(num, largest, builder)
         }
 
         return builder;
     }
 }
+
