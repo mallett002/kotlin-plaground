@@ -133,7 +133,7 @@ class Algorithms {
     }
 
     fun allConstruct(target: String, wordBank: List<String>): List<List<String>> {
-        if (target.isEmpty()) return mutableListOf(mutableListOf()) // [[]]
+        if (target.isEmpty()) return mutableListOf(mutableListOf())
 
         // Thing we'll return at the end
         val combinations: MutableList<List<String>> = mutableListOf()
@@ -144,11 +144,10 @@ class Algorithms {
                 val remainder = target.substring(word.length)
                 val result = allConstruct(remainder, wordBank)
 
-                if (result.isNotEmpty()) { // if we have an [[]]
-                    val theList = result.get(0).toMutableList()
+                if (result.isNotEmpty()) { // if we have an [[]] "a list of lists
+                    val theList = result[0].toMutableList()
 
                     theList.prepend(word)
-
                     combinations.add(theList)
                 }
             }
