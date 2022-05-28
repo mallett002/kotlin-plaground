@@ -1,7 +1,3 @@
-import classes.Expr
-import classes.Num
-import classes.Sum
-
 class Algorithms {
     fun canConstruct(
         target: String,
@@ -131,6 +127,10 @@ class Algorithms {
 
 
     /* allConstruct algorithm: Return all the combinations you can build the target */
+    // new extension function that adds an element to the front of a list
+    private fun <T> MutableList<T>.prepend(element: T) {
+        add(0, element)
+    }
 
     fun allConstruct(target: String, wordBank: List<String>): List<List<String>> {
         if (target.isEmpty()) return mutableListOf(mutableListOf()) // [[]]
@@ -147,15 +147,15 @@ class Algorithms {
                 if (result.isNotEmpty()) { // if we have an [[]]
                     val theList = result.get(0).toMutableList()
 
-                    theList[theList.size - 1] = word
+                    theList.prepend(word)
 
-                    combinations[combinations.size - 1] = theList
+                    combinations.add(theList)
                 }
             }
         }
 
         return combinations
-    } // end
+    }
 
 
 }
