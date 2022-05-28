@@ -128,5 +128,35 @@ class Algorithms {
         cache[num] = builder
         return builder
     }
+
+
+    /* allConstruct algorithm: Return all the combinations you can build the target */
+
+    fun allConstruct(target: String, wordBank: List<String>): List<List<String>> {
+        if (target.isEmpty()) return mutableListOf(mutableListOf()) // [[]]
+
+        // Thing we'll return at the end
+        val combinations: MutableList<List<String>> = mutableListOf()
+
+        for (word in wordBank) {
+            if (target.indexOf(word) == 0) { // make sure it's a prefix
+                // remove the prefix off the target:
+                val remainder = target.substring(word.length)
+                val result = allConstruct(remainder, wordBank)
+
+                if (result.isNotEmpty()) { // if we have an [[]]
+                    val theList = result.get(0).toMutableList()
+
+                    theList[theList.size - 1] = word
+
+                    combinations[combinations.size - 1] = theList
+                }
+            }
+        }
+
+        return combinations
+    } // end
+
+
 }
 

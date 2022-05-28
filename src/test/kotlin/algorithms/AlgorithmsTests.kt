@@ -85,6 +85,24 @@ internal class AlgorithmsTests {
         assertEquals("XLIX", resultSix)
         assertEquals("CMXCIX", resultSeven)
     }
+
+    @Test
+    fun testAllConstruct() {
+        val resultOne = algorithms.allConstruct("", listOf())
+        val resultTwo = algorithms.allConstruct("", listOf("cat", "dog", "mouse"))
+        val resultThree = algorithms.allConstruct("hello", listOf("cat", "dog", "mouse"))
+//        val resultFour = algorithms.allConstruct("purple", listOf("purp", "p", "ur", "le", "purpl"))
+
+        assertEquals(listOf(), resultOne)
+//        assertEquals(listOf(listOf()), resultTwo) // "", ["cat", "dog", "mouse"] => [[]] (if we get to an empty string, we'll have an inner list)
+//        assertEquals(listOf(), resultThree) // "hello", ["cat", "dog", "mouse"] => [] (can't make any)
+//        assertEquals(listOf(
+//            listOf("purp", "le"),
+//            listOf("p", "ur", "p", "le"),
+//            ),
+//            resultFour
+//        )
+    }
 }
 
 
