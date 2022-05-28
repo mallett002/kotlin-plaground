@@ -94,22 +94,31 @@ class Algorithms {
         return "${builder}${createRomans(newNum, newRoman)}"
     }
 
-    fun createRomans(num: Int, builder: String = ""): String {
+    fun createRomans(num: Int, builder: String = "", cache: MutableMap<Int, String> = mutableMapOf()): String {
+        // Base case: if we already did this operation, return the cached result
+        if (cache.containsKey(num)) return cache[num]!!
+
         // Base case: Tries to find a romanNumeral, returns it if it finds it
         val roman = getRomanNumeral(num)
+
         if (roman.isNotEmpty()) {
-            return "$builder${roman}"
+            val updatedRoman = "$builder${roman}"
+            cache[num] = updatedRoman
+            return updatedRoman
         }
 
         // Otherwise, gets the largest number it can deduct from, that has a difference greater than 0
         // if it finds one that isn't zero, returns the roman string from it
         val largest: Int = findLargestRoman(num)
         if (largest != 0) {
-            return buildRomanString(num, largest, builder)
+            val updatedRoman = buildRomanString(num, largest, builder)
+            cache[num] = updatedRoman
+            return updatedRoman
         }
 
         // In all other cases, just return the builder string
-        return builder;
+        cache[num] = builder
+        return builder
     }
 }
 
