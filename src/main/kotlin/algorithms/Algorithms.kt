@@ -95,16 +95,20 @@ class Algorithms {
     }
 
     fun createRomans(num: Int, builder: String = ""): String {
+        // Base case: Tries to find a romanNumeral, returns it if it finds it
         val roman = getRomanNumeral(num)
         if (roman.isNotEmpty()) {
             return "$builder${roman}"
         }
 
+        // Otherwise, gets the largest number it can deduct from, that has a difference greater than 0
+        // if it finds one that isn't zero, returns the roman string from it
         val largest: Int = findLargestRoman(num)
         if (largest != 0) {
             return buildRomanString(num, largest, builder)
         }
 
+        // In all other cases, just return the builder string
         return builder;
     }
 }
