@@ -2,6 +2,7 @@ package algorithms
 
 import Algorithms
 import org.junit.jupiter.api.Test
+import kotlin.system.measureTimeMillis
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 import kotlin.test.assertEquals
@@ -37,17 +38,22 @@ internal class AlgorithmsTests {
         val actualOne = algorithms.countConstruct("abcdef", listOf("ab", "abc", "cd", "def", "abcd"))
         val actualTwo = algorithms.countConstruct("purple", listOf("purp", "p", "ur", "le", "purpl"))
         val actualThree = algorithms.countConstruct("skateboard", listOf("bo", "rd", "ate", "ska", "stk", "boar"))
-        val expectedFour = algorithms.countConstruct(
-            "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef",
-            listOf(
-                "e",
-                "eee",
-                "eeee",
-                "eeeeeeee",
-                "eeeeeeeee",
-                "eeeeeeeeee",
-                "eeeeeeeeeeeeeeeeeeeee",
-            ))
+        var expectedFour: Int
+        val timeInMillis = measureTimeMillis {
+            expectedFour = algorithms.countConstruct(
+                "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef",
+                listOf(
+                    "e",
+                    "eee",
+                    "eeee",
+                    "eeeeeeee",
+                    "eeeeeeeee",
+                    "eeeeeeeeee",
+                    "eeeeeeeeeeeeeeeeeeeee",
+                ))
+        }
+
+        println("runtime: $timeInMillis")
 
         assertEquals(1, actualOne)
         assertEquals(2, actualTwo)
@@ -57,15 +63,43 @@ internal class AlgorithmsTests {
 
     @Test
     fun testRomanNumerals() {
-        val resultOne: String = algorithms.createRomans(0);
-        val resultTwo: String = algorithms.createRomans(3);
-        val resultThree: String = algorithms.createRomans(4);
-        val resultFour: String = algorithms.createRomans(6);
+        val resultOne: String = algorithms.createRomans(0)
+        val resultTwo: String = algorithms.createRomans(1)
+        val resultThree: String = algorithms.createRomans(3)
+        val resultFour: String = algorithms.createRomans(4)
+        val resultFive: String = algorithms.createRomans(6)
+        val resultSix: String = algorithms.createRomans(49)
+        var resultSeven: String
 
-        assertEquals("", resultOne);
-        assertEquals("III", resultTwo);
-        assertEquals("IV", resultThree);
-        assertEquals("VI", resultFour);
+        val timeInMillis = measureTimeMillis {
+            resultSeven = algorithms.createRomans(999)
+        }
+
+        println("runtime: $timeInMillis")
+
+        assertEquals("", resultOne)
+        assertEquals("I", resultTwo)
+        assertEquals("III", resultThree)
+        assertEquals("IV", resultFour)
+        assertEquals("VI", resultFive)
+        assertEquals("XLIX", resultSix)
+        assertEquals("CMXCIX", resultSeven)
+    }
+
+    @Test
+    fun testAllConstruct() {
+        val resultTwo = algorithms.allConstruct("", listOf("cat", "dog", "mouse"))
+        val resultThree = algorithms.allConstruct("hello", listOf("cat", "dog", "mouse"))
+        val resultFour = algorithms.allConstruct("purple", listOf("purp", "p", "ur", "le", "purpl"))
+
+        assertEquals(listOf(listOf()), resultTwo) // "", ["cat", "dog", "mouse"] => [[]] (if we get to an empty string, we'll have an inner list)
+        assertEquals(listOf(), resultThree) // "hello", ["cat", "dog", "mouse"] => [] (can't make any)
+        assertEquals(listOf(
+            listOf("purp", "le"),
+            listOf("p", "ur", "p", "le"),
+            ),
+            resultFour
+        )
     }
 }
 
