@@ -76,3 +76,14 @@ class NumSealed(val value: Int) : ExprSealed
 class SumSealed(val left: ExprSealed, val right: ExprSealed) : ExprSealed
 class OtherOne(val next: Int): ExprSealed
 // in "evalSealed", we don't need the "else" case, "expr" can only be one of the implemented interfaces from the sealed interface.
+
+
+/* ===========Extension Functions ============*/
+// The "this" keyword represents the Type being extended
+// Make ext fun "toRational", which extends "Int":
+fun Int.toRational(): RationalNumber = RationalNumber(this, 1)
+
+// Make ext fun "toRational" also extend Pair<Int, Int>
+fun Pair<Int, Int>.toRational(): RationalNumber = RationalNumber(first, second)
+
+data class RationalNumber(val numerator: Int, val denominator: Int)
