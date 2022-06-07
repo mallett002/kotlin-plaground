@@ -101,6 +101,23 @@ internal class AlgorithmsTests {
             resultFour
         )
     }
+
+    @Test
+    fun `test checkIsValidString`() {
+        val resultZero = algorithms.checkIsValidString("")
+        val resultOne = algorithms.checkIsValidString("()")
+        val resultTwo = algorithms.checkIsValidString("(]")
+        val resultThree = algorithms.checkIsValidString("(({}))")
+        val resultFour = algorithms.checkIsValidString("(({})))")
+        val resultFive = algorithms.checkIsValidString("(({})){}")
+
+        assertTrue { resultZero }
+        assertTrue { resultOne }
+        assertFalse { resultTwo }
+        assertTrue { resultThree }
+        assertFalse { resultFour }
+        assertTrue { resultFive }
+    }
 }
 
 

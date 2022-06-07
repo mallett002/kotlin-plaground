@@ -156,6 +156,30 @@ class Algorithms {
         return combinations
     }
 
+    /*Valid Strings*/
+    // Valid if each opening char has a closing
+    fun hasMatchingEnding(start: Char, end: Char): Boolean {
+        if ((start.equals("(")) && (end.equals(")"))) {
+            return true
+        }
+        if ((start.equals("[")) && (end.equals("]"))) {
+            return true
+        }
+        if ((start.equals("{")) && (end.equals("}"))) {
+            return true
+        }
 
+        return false
+    }
+
+    fun checkIsValidString(input: String): Boolean {
+        if (input.isEmpty()) return true
+
+        for (i in 0..input.length - 1) {
+
+        }
+
+        return false;
+    }
 }
 
