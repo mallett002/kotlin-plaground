@@ -118,6 +118,19 @@ internal class AlgorithmsTests {
         assertFalse { resultFour }
         assertTrue { resultFive }
     }
+
+    @Test
+    fun `test largest square`() {
+        val resultOne = algorithms.square(13, 11) // -> 5
+        val resultTwo = algorithms.square(10, 21) // -> 7
+        val resultThree = algorithms.square(2, 1) // -> 0
+        val resultFour = algorithms.square(1, 8) // -> 2
+
+        assertEquals(5, resultOne)
+        assertEquals(7, resultTwo)
+        assertEquals(0, resultThree)
+        assertEquals(2, resultFour)
+    }
 }
 
 

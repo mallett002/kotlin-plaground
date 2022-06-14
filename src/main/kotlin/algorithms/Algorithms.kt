@@ -181,4 +181,9 @@ class Algorithms {
 
         return false;
     }
+
+    // 2 sticks. Make the largest square possible. Can cut sticks and have leftovers
+    fun square(a: Int, b: Int): Int {
+        return 0
+    }
 }
