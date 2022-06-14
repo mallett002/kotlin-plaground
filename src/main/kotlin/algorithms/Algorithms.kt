@@ -182,8 +182,19 @@ class Algorithms {
         return false;
     }
 
+    // Largest square with 2 sticks:
     // 2 sticks. Make the largest square possible. Can cut sticks and have leftovers
-    fun square(a: Int, b: Int): Int {
+    fun square(stickOne: Int, stickTwo: Int): Int {
+        var longestSide = (stickOne + stickTwo) / 4
+
+        while (longestSide > 0) {
+            if (stickOne/longestSide + stickTwo/longestSide == 4) {
+                return longestSide
+            }
+
+            longestSide--
+        }
+
         return 0
     }
 }
