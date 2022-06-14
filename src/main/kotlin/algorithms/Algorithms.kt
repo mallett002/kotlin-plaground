@@ -158,28 +158,27 @@ class Algorithms {
 
     /*Valid Strings*/
     // Valid if each opening char has a closing
-    fun hasMatchingEnding(start: Char, end: Char): Boolean {
-        if ((start.equals("(")) && (end.equals(")"))) {
-            return true
-        }
-        if ((start.equals("[")) && (end.equals("]"))) {
-            return true
-        }
-        if ((start.equals("{")) && (end.equals("}"))) {
-            return true
-        }
-
-        return false
+    fun getMatch(start: Char): Char? = when (start) {
+        '(' -> ')'
+        '[' -> ']'
+        '{' -> '}'
+        else -> null
     }
 
     fun checkIsValidString(input: String): Boolean {
         if (input.isEmpty()) return true
+        if (input.length % 2 != 0) return false
 
-        for (i in 0..input.length - 1) {
+        for (i in 0..input.length) {
+            if (i <= input.length - 2) {
+                if (getMatch(input[i]) == input[i + 1]) {
+                    val newStr = input.removeRange(i, i + 2)
 
+                    return checkIsValidString(newStr)
+                }
+            }
         }
 
         return false;
     }
 }
-
