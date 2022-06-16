@@ -1,3 +1,5 @@
+import kotlin.math.log
+
 class Algorithms {
     fun canConstruct(
         target: String,
