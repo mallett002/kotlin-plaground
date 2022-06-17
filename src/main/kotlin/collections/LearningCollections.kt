@@ -35,3 +35,22 @@ fun Shop.customerToCityMap(): Map<Customer, City> =
 // Build a map from the customer name to their city
 fun Shop.customerNameToCityMap(): Map<String, City> =
     customers.associate{ c -> c.name to c.city }
+
+// Build a map that stores the customers living in a given city
+fun Shop.groupCustomersByCity(): Map<City, List<Customer>> =
+    customers.groupBy { it.city }
+
+// Return customers who have more undelivered orders than delivered
+fun Shop.getCustomersWithMoreUndeliveredOrders(): Set<Customer> = customers.filter { it ->
+    val (delivered, undelivered) = it.orders.partition { it.isDelivered }
+
+    undelivered.size > delivered.size
+}.toSet()
+
+// Return all products the given customer has ordered
+fun Customer.getOrderedProducts(): List<Product> =
+    orders.flatMap(Order::products)
+
+// Return all products that were ordered by at least one customer
+fun Shop.getOrderedProducts(): Set<Product> =
+    customers.flatMap(Customer::getOrderedProducts).toSet()
