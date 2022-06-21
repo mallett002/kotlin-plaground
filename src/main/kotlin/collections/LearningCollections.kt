@@ -54,3 +54,13 @@ fun Customer.getOrderedProducts(): List<Product> =
 // Return all products that were ordered by at least one customer
 fun Shop.getOrderedProducts(): Set<Product> =
     customers.flatMap(Customer::getOrderedProducts).toSet()
+
+// Max & Min functions
+// Return a customer who has placed the maximum amount of orders
+fun Shop.getCustomerWithMaxOrders(): Customer? =
+    customers.maxByOrNull { it.orders.size }
+
+// Return the most expensive product that has been ordered by the given customer
+fun getMostExpensiveProductBy(customer: Customer): Product? =
+    customer.orders.flatMap(Order::products)
+        .maxByOrNull(Product::price)
