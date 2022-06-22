@@ -64,3 +64,12 @@ fun Shop.getCustomerWithMaxOrders(): Customer? =
 fun getMostExpensiveProductBy(customer: Customer): Product? =
     customer.orders.flatMap(Order::products)
         .maxByOrNull(Product::price)
+
+// Sum
+// Return the sum of prices for all the products ordered by a given customer
+fun moneySpentByMine(customer: Customer): Double =
+    customer.orders.flatMap(Order::products).sumOf{ it.price }
+
+// Return the sum of prices for all the products ordered by a given customer
+fun moneySpentByTheirs(customer: Customer): Double =
+    customer.orders.flatMap{ it.products }.sumOf{ it.price }
